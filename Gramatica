@@ -1,0 +1,172 @@
+program -> declaration_list
+
+declaration_list -> declaration declaration_list
+                  | declaration
+
+declaration -> function_declaration
+             | variable_declaration
+
+function_declaration -> type_specifier declarator TK_LPAREN parameter_list TK_RPAREN compound_statement
+
+variable_declaration -> type_specifier init_declarator_list TK_SEMICOLON
+
+init_declarator_list -> init_declarator
+                      | init_declarator TK_COMMA init_declarator_list
+
+init_declarator -> declarator
+                 | declarator TK_ASSIGN initializer
+                 | declarator assignment_operator assignment_expression
+
+declarator -> pointer direct_declarator
+            | direct_declarator
+
+pointer -> TK_MULTIPLY
+         | TK_MULTIPLY pointer
+
+direct_declarator -> TK_IDENTIFIER
+                   | TK_LPAREN declarator TK_RPAREN
+                   | direct_declarator TK_LBRACKET conditional_expression TK_RBRACKET
+                   | direct_declarator TK_LPAREN parameter_list TK_RPAREN
+                   | direct_declarator TK_LPAREN identifier_list TK_RPAREN
+
+type_specifier -> TK_INT
+                | TK_LONG TK_INT
+                | TK_LONG TK_LONG TK_INT
+                | TK_FLOAT
+                | TK_CHAR
+                | TK_DOUBLE
+                | TK_UNSIGNED TK_INT
+                | TK_UNSIGNED TK_LONG TK_INT
+                | TK_UNSIGNED TK_LONG TK_LONG TK_INT
+                | TK_UNSIGNED TK_CHAR
+                | TK_UNSIGNED TK_FLOAT
+                | TK_UNSIGNED TK_DOUBLE
+                | TK_VOID
+
+parameter_list -> parameter_declaration
+                | parameter_declaration TK_COMMA parameter_list
+
+parameter_declaration -> type_specifier declarator
+
+initializer -> assignment_expression
+             | TK_LBRACE initializer_list TK_RBRACE
+
+initializer_list -> initializer
+                  | initializer TK_COMMA initializer_list
+
+compound_statement -> TK_LBRACE statement_list TK_RBRACE
+
+statement_list -> statement statement_list
+                | statement
+
+statement -> expression_statement
+           | compound_statement
+           | selection_statement
+           | iteration_statement
+           | jump_statement
+           | switch_statement
+
+expression_statement -> expression TK_SEMICOLON
+                      | TK_SEMICOLON
+
+selection_statement -> TK_IF TK_LPAREN expression TK_RPAREN statement
+                     | TK_IF TK_LPAREN expression TK_RPAREN statement TK_ELSE statement
+
+iteration_statement -> TK_WHILE TK_LPAREN expression TK_RPAREN statement
+                     | TK_DO statement TK_WHILE TK_LPAREN expression TK_RPAREN TK_SEMICOLON
+                     | TK_FOR TK_LPAREN for_expression TK_RPAREN statement
+
+for_expression -> expression_statement expression_statement expression
+
+jump_statement -> TK_RETURN expression TK_SEMICOLON
+                | TK_CONTINUE TK_SEMICOLON
+                | TK_BREAK TK_SEMICOLON
+
+switch_statement -> TK_SWITCH TK_LPAREN expression TK_RPAREN TK_LBRACE case_statement_list TK_RBRACE
+
+case_statement_list -> case_statement case_statement_list
+                     | case_statement
+
+case_statement -> TK_CASE constant TK_COLON statement_list
+                | TK_DEFAULT TK_COLON statement_list
+
+expression -> assignment_expression
+            | expression TK_COMMA assignment_expression
+
+assignment_expression -> conditional_expression
+                       | unary_expression assignment_operator assignment_expression
+
+assignment_operator -> TK_ASSIGN
+                     | TK_PLUS_EQUAL
+                     | TK_MINUS_EQUAL
+                     | TK_MULTIPLY_EQUAL
+                     | TK_DIVIDE_EQUAL
+                     | TK_MODULO_EQUAL
+
+conditional_expression -> logical_or_expression
+                        | logical_or_expression TK_QUESTION expression TK_COLON conditional_expression
+
+logical_or_expression -> logical_and_expression
+                       | logical_or_expression TK_LOGICAL_OR logical_and_expression
+
+logical_and_expression -> bitwise_or_expression
+                        | logical_and_expression TK_LOGICAL_AND bitwise_or_expression
+
+bitwise_or_expression -> bitwise_xor_expression
+                       | bitwise_or_expression TK_BITWISE_OR bitwise_xor_expression
+
+bitwise_xor_expression -> bitwise_and_expression
+                        | bitwise_xor_expression TK_BITWISE_XOR bitwise_and_expression
+
+bitwise_and_expression -> bitwise_shift_expression
+                        | bitwise_and_expression TK_BITWISE_AND bitwise_shift_expression
+
+bitwise_shift_expression -> additive_expression
+                          | bitwise_shift_expression TK_BITWISE_LSHIFT additive_expression
+                          | bitwise_shift_expression TK_BITWISE_RSHIFT additive_expression
+
+additive_expression -> multiplicative_expression
+                     | additive_expression TK_PLUS multiplicative_expression
+                     | additive_expression TK_MINUS multiplicative_expression
+
+multiplicative_expression -> unary_expression
+                           | multiplicative_expression TK_MULTIPLY unary_expression
+                           | multiplicative_expression TK_DIVIDE unary_expression
+                           | multiplicative_expression TK_MODULO unary_expression
+
+unary_expression -> postfix_expression
+                  | TK_PLUS_PLUS unary_expression
+                  | TK_MINUS_MINUS unary_expression
+                  | TK_LOGICAL_NOT unary_expression
+                  | TK_BITWISE_NOT unary_expression
+
+postfix_expression -> primary_expression
+                    | postfix_expression TK_PLUS_PLUS
+                    | postfix_expression TK_MINUS_MINUS
+                    | postfix_expression TK_LBRACKET expression TK_RBRACKET
+                    | postfix_expression TK_LPAREN argument_expression_list TK_RPAREN
+
+primary_expression -> TK_IDENTIFIER
+                    | constant
+                    | TK_LPAREN expression TK_RPAREN
+                    | function_call
+
+function_call -> TK_IDENTIFIER TK_LPAREN argument_expression_list TK_RPAREN
+
+argument_expression_list -> assignment_expression
+                          | argument_expression_list TK_COMMA assignment_expression
+
+constant -> TK_INT
+          | TK_FLOAT
+          | TK_CHAR
+          | TK_DOUBLE
+          | TK_UNSIGNED TK_INT
+          | TK_UNSIGNED TK_LONG TK_INT
+          | TK_UNSIGNED TK_LONG TK_LONG TK_INT
+          | TK_UNSIGNED TK_CHAR
+          | TK_UNSIGNED TK_FLOAT
+          | TK_UNSIGNED TK_DOUBLE
+
+identifier_list -> TK_IDENTIFIER identifier_list 
+
+identifier_list_line -> TK_COMMA TK_IDENTIFIER identifier_list_line
