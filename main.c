@@ -747,30 +747,30 @@ int main()
         return 1;
     }
 
-    Token token;
+    // Token token;
 
-    int lineCount = 1, columnCount = 1;
-    int tokenCount = 0;
-    printf("| Linha          | Coluna        | Lexeme        | Token\n");
-    printf("|----------------|---------------|---------------|-----------------\n");
-    fprintf(outputFile,"| Linha          | Coluna        | Lexeme        | Token\n");
-    fprintf(outputFile,"|----------------|---------------|---------------|-----------------\n");
+    // int lineCount = 1, columnCount = 1;
+    // int tokenCount = 0;
+    // printf("| Linha          | Coluna        | Lexeme        | Token\n");
+    // printf("|----------------|---------------|---------------|-----------------\n");
+    // fprintf(outputFile,"| Linha          | Coluna        | Lexeme        | Token\n");
+    // fprintf(outputFile,"|----------------|---------------|---------------|-----------------\n");
 
-    do
-    {
-        token = getNextToken(inputFile, &lineCount, &columnCount);
-        printf("| %-14d | %-13d | %-13s | %s\n", token.line, token.column, token.lexeme, token.type);
-        fprintf(outputFile, "| %-14d | %-13d | %-13s | %s\n", token.line, token.column, token.lexeme, token.type);
-        tokenCount++;
-    } while (strcmp(token.type, "TK_EOF") != 0);
+    // do
+    // {
+    //     token = getNextToken(inputFile, &lineCount, &columnCount);
+    //     printf("| %-14d | %-13d | %-13s | %s\n", token.line, token.column, token.lexeme, token.type);
+    //     fprintf(outputFile, "| %-14d | %-13d | %-13s | %s\n", token.line, token.column, token.lexeme, token.type);
+    //     tokenCount++;
+    // } while (strcmp(token.type, "TK_EOF") != 0);
 
-    printf("|----------------|---------------|---------------|-----------------\n");
-    printf("|Total tokens:   | %-13d |               |\n", tokenCount);
-    printf("|----------------|---------------|               |\n");
+    // printf("|----------------|---------------|---------------|-----------------\n");
+    // printf("|Total tokens:   | %-13d |               |\n", tokenCount);
+    // printf("|----------------|---------------|               |\n");
     
-    fprintf(outputFile,"|----------------|---------------|---------------|-----------------\n");
-    fprintf(outputFile,"|Total tokens:   | %-13d |               |\n", tokenCount);
-    fprintf(outputFile,"|----------------|---------------|               |\n");
+    // fprintf(outputFile,"|----------------|---------------|---------------|-----------------\n");
+    // fprintf(outputFile,"|Total tokens:   | %-13d |               |\n", tokenCount);
+    // fprintf(outputFile,"|----------------|---------------|               |\n");
 
     fclose(inputFile);
     fclose(outputFile);
