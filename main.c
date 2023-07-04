@@ -748,14 +748,12 @@ int main()
     }
 
     // Token token;
-
     // int lineCount = 1, columnCount = 1;
     // int tokenCount = 0;
     // printf("| Linha          | Coluna        | Lexeme        | Token\n");
     // printf("|----------------|---------------|---------------|-----------------\n");
     // fprintf(outputFile,"| Linha          | Coluna        | Lexeme        | Token\n");
     // fprintf(outputFile,"|----------------|---------------|---------------|-----------------\n");
-
     // do
     // {
     //     token = getNextToken(inputFile, &lineCount, &columnCount);
@@ -763,12 +761,10 @@ int main()
     //     fprintf(outputFile, "| %-14d | %-13d | %-13s | %s\n", token.line, token.column, token.lexeme, token.type);
     //     tokenCount++;
     // } while (strcmp(token.type, "TK_EOF") != 0);
-
     // printf("|----------------|---------------|---------------|-----------------\n");
     // printf("|Total tokens:   | %-13d |               |\n", tokenCount);
     // printf("|----------------|---------------|               |\n");
-    
-    // fprintf(outputFile,"|----------------|---------------|---------------|-----------------\n");
+        // fprintf(outputFile,"|----------------|---------------|---------------|-----------------\n");
     // fprintf(outputFile,"|Total tokens:   | %-13d |               |\n", tokenCount);
     // fprintf(outputFile,"|----------------|---------------|               |\n");
 
