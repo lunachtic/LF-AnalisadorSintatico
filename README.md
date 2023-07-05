@@ -28,3 +28,7 @@ Escrever uma gramática e um analisador sintático descendente recursivo que rec
 Obs: O analisador pode ser implementado manualmente ou com o auxílio da ferramenta ParsingEdu. Em caso de erro sintático o analisador pode encerrar a análise, obrigatoriamente emitindo uma mensagem informando em que linha e coluna ocorreu o erro, qual era o token esperado e qual foi o token encontrado.
 
 Obs: Pode ser utilizada como referência a gramática em https://www.lysator.liu.se/c/ANSI-C-grammar-y.html.
+
+## Utilização:
+
+O arquivo main.c faz a leitura do arquivo texto input.txt e retorna se a estrutura sintatica foi reconhecida, lexemas e estruturas fora do que foi definido anteriormente resultarão em um erro na execucão do probrama.
