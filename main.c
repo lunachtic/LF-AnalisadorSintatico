@@ -1983,7 +1983,7 @@ const char *getTokenName(TokenN Token)
 }
 
 int main(){
-    inputFile = fopen("input.txt", "r\n");
+    inputFile = fopen("input.txt", "r");
     if (inputFile == NULL){
         printf("Error opening input or output file.\n\n");
         return 1;
